@@ -1,0 +1,135 @@
+1) O valor da variável SOMA será 91.
+
+2) 
+
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        int num, a = 0, b = 1, c = 1;
+        bool pertence = false;
+
+        Console.Write("Informe um número: ");
+        num = int.Parse(Console.ReadLine());
+
+        while (c < num) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+
+        if (c == num) {
+            pertence = true;
+        }
+
+        if (pertence) {
+            Console.WriteLine($"{num} pertence à sequência de Fibonacci.");
+        } else {
+            Console.WriteLine($"{num} não pertence à sequência de Fibonacci.");
+        }
+    }
+}
+
+3)
+
+using System;
+using Newtonsoft.Json;
+
+public class FaturamentoMensal
+{
+    public double[] valores { get; set; }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string json = System.IO.File.ReadAllText(@"dados.json");
+        FaturamentoMensal faturamento = JsonConvert.DeserializeObject<FaturamentoMensal>(json);
+        double[] valores = faturamento.valores;
+
+        double menor = valores[0];
+        double maior = valores[0];
+        foreach (double valor in valores)
+        {
+            if (valor < menor)
+            {
+                menor = valor;
+            }
+            if (valor > maior)
+            {
+                maior = valor;
+            }
+        }
+        Console.WriteLine("Menor valor de faturamento: " + menor);
+        Console.WriteLine("Maior valor de faturamento: " + maior);
+
+        double soma = 0;
+        int qtdValoresNaoZero = 0;
+        foreach (double valor in valores)
+        {
+            if (valor != 0)
+            {
+                soma += valor;
+                qtdValoresNaoZero++;
+            }
+        }
+        double media = soma / qtdValoresNaoZero;
+
+        int qtdDiasAcimaDaMedia = 0;
+        foreach (double valor in valores)
+        {
+            if (valor > media)
+            {
+                qtdDiasAcimaDaMedia++;
+            }
+        }
+        Console.WriteLine("Número de dias em que o valor diário foi superior à média: " + qtdDiasAcimaDaMedia);
+    }
+}
+
+4)
+
+using System;
+
+class Program {
+    static void Main() {
+        decimal faturamentoTotal = 181759.98; // Valor total mensal do faturamento
+        decimal sp = 67836.43;
+        decimal rj = 36678.66;
+        decimal mg = 29229.88;
+        decimal es = 27165.48;
+        decimal outros = 19849.53;
+
+        // Cálculo do percentual de representação de cada estado
+        decimal spPercentual = (sp / faturamentoTotal) * 100;
+        decimal rjPercentual = (rj / faturamentoTotal) * 100;
+        decimal mgPercentual = (mg / faturamentoTotal) * 100;
+        decimal esPercentual = (es / faturamentoTotal) * 100;
+        decimal outrosPercentual = (outros / faturamentoTotal) * 100;
+
+        // Impressão dos resultados
+        Console.WriteLine($"Percentual de representação de São Paulo: {spPercentual}%");
+        Console.WriteLine($"Percentual de representação do Rio de Janeiro: {rjPercentual}%");
+        Console.WriteLine($"Percentual de representação de Minas Gerais: {mgPercentual}%");
+        Console.WriteLine($"Percentual de representação do Espírito Santo: {esPercentual}%");
+        Console.WriteLine($"Percentual de representação dos outros estados: {outrosPercentual}%");
+    }
+}
+
+5)
+
+using System;
+
+class Program {
+  static void Main(string[] args) {
+    string originalString = "Hello, world!";
+    string reversedString = "";
+
+    for (int i = originalString.Length - 1; i >= 0; i--) {
+      reversedString += originalString[i];
+    }
+
+    Console.WriteLine(reversedString);
+  }
+}
